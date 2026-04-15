@@ -1,0 +1,131 @@
+.game-layout {
+  grid-template-columns: minmax(260px, 300px) minmax(0, 1fr);
+  align-items: start;
+}
+.sidebar,
+.battlefield,
+.panel,
+.board-panel,
+.board {
+  min-width: 0;
+}
+.sidebar {
+  display: grid;
+  gap: 12px;
+  align-self: start;
+  position: relative;
+  inset: auto;
+  width: auto;
+  height: auto;
+  max-width: none;
+  padding: 0;
+  overflow: visible;
+  transform: none;
+  transition: none;
+  z-index: auto;
+}
+.sidebar::after { content: none; }
+.panel {
+  padding: 14px;
+  overflow: hidden;
+}
+.cardless {
+  background:
+    linear-gradient(180deg, rgba(243, 247, 255, 0.98), rgba(232, 239, 255, 0.98));
+}
+.room-invite-button {
+  margin-top: 12px;
+}
+.event-line { line-height: 1.4; font-size: 0.92rem; }
+.ship-list, .status-stack, .battle-fleet-stack, .battle-fleet-list { display: grid; gap: 8px; }
+.ship-chip { text-align: left; color: inherit; }
+.ship-group-chip {
+  justify-content: space-between;
+}
+.ship-group-chip strong {
+  font-size: 0.92rem;
+  color: #5d6dd4;
+}
+.ship-chip.active {
+  background: linear-gradient(135deg, rgba(145, 167, 255, 0.9), rgba(196, 214, 255, 0.95));
+}
+.ship-chip.placed { opacity: 0.55; }
+.battle-fleet-card {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, rgba(245, 248, 255, 0.96), rgba(233, 239, 255, 0.94));
+  border: 1px solid rgba(114, 126, 255, 0.2);
+}
+.battle-fleet-header,
+.battle-fleet-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+.battle-fleet-header strong {
+  color: #1f2754;
+  font-size: 1rem;
+}
+.battle-fleet-line strong {
+  color: #5d6dd4;
+  font-size: 0.92rem;
+}
+.battle-fleet-line span {
+  color: #50608e;
+}
+.status-line {
+  display: grid;
+  gap: 2px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  background: rgba(245, 248, 255, 0.84);
+  font-size: 0.9rem;
+}
+.battlefield { display: grid; gap: 14px; }
+.battle-state {
+  padding: 14px 16px;
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(244, 247, 255, 0.96), rgba(235, 241, 255, 0.96));
+  border: 1px solid rgba(114, 126, 255, 0.22);
+}
+.battle-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.battle-heading-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.battle-pill {
+  font-size: 0.9rem;
+  flex: 0 0 auto;
+}
+.mobile-sidebar-toggle,
+.mobile-sidebar-header {
+  display: none;
+  position: static;
+  margin: 0;
+  padding: 0;
+}
+.mobile-sidebar-backdrop {
+  display: none;
+}
+.mobile-ready-button {
+  display: none;
+}
+.battle-state h2 {
+  font-size: clamp(1.4rem, 2.2vw, 2.3rem);
+  flex-wrap: wrap;
+}
+.boards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; align-items: start; }

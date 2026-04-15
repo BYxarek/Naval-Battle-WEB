@@ -1,0 +1,31 @@
+@media (max-width: 480px) {
+  .status-stack {
+    grid-template-columns: 1fr;
+  }
+  .battle-pill {
+    width: 100%;
+    justify-content: center;
+  }
+  .panel-row-spread {
+    align-items: stretch;
+  }
+  .modal-backdrop {
+    padding: 10px;
+  }
+  .settings-option {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .settings-back-button,
+  .settings-theme-button,
+  .language-option {
+    width: 100%;
+  }
+  .topbar-action-button {
+    padding: 10px 8px;
+    font-size: 0.88rem;
+  }
+  .language-switcher {
+    flex-direction: column;
+  }
+}

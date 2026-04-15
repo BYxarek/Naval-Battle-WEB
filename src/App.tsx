@@ -1,77 +1,72 @@
-import { AnimatePresence, motion } from 'motion/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon, faSun, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBookOpen, faDownload, faGear } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { GameScreen } from './components/GameScreen';
 import { LobbyScreen } from './components/LobbyScreen';
+import { SettingsScreen } from './components/SettingsScreen';
+import { ToastStack } from './components/app/ToastStack';
+import { LobbyRulesModal } from './components/lobby/LobbyRulesModal';
+import { useI18n } from './i18n';
+import { useBattleGraphicsPreference } from './hooks/useBattleGraphicsPreference';
+import { useLocalePreference } from './hooks/useLocalePreference';
 import { useRoomSync } from './hooks/useRoomSync';
+import { useSitePresence } from './hooks/useSitePresence';
+import { useThemePreference } from './hooks/useThemePreference';
 import { useAppStore } from './store';
 
-function ToastStack() {
-  const notifications = useAppStore((state) => state.notifications);
-  const dismissNotification = useAppStore((state) => state.dismissNotification);
-
-  useEffect(() => {
-    if (notifications.length === 0) {
-      return;
-    }
-
-    const timers = notifications.map((notification) =>
-      window.setTimeout(() => {
-        dismissNotification(notification.id);
-      }, 4500),
-    );
-
-    return () => {
-      for (const timer of timers) {
-        window.clearTimeout(timer);
-      }
-    };
-  }, [dismissNotification, notifications]);
-
-  return (
-    <div className="toast-stack">
-      <AnimatePresence>
-        {notifications.map((notification) => (
-        <motion.aside
-          key={notification.id}
-          className={`toast toast-${notification.tone}`}
-          initial={{ opacity: 0, x: 10, y: 6 }}
-          animate={{ opacity: 1, x: 0, y: 0 }}
-          exit={{ opacity: 0, x: 10, y: -4 }}
-          transition={{ duration: 0.18 }}
-        >
-          <span>{notification.message}</span>
-          <button
-            className="toast-close"
-            onClick={() => dismissNotification(notification.id)}
-            title="Закрыть уведомление"
-          >
-            <FontAwesomeIcon icon={faXmark} />
-          </button>
-        </motion.aside>
-        ))}
-      </AnimatePresence>
-    </div>
-  );
-}
+type BeforeInstallPromptEvent = Event & {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
+};
 
 export function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    const saved = window.localStorage.getItem('theme-preference');
-    if (saved === 'light' || saved === 'dark') {
-      return saved;
-    }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  });
+  const [rulesOpen, setRulesOpen] = useState(false);
+  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const { theme, setTheme } = useThemePreference();
+  const { battleGraphicsStyle, setBattleGraphicsStyle } = useBattleGraphicsPreference();
+  const { locale, setLocale } = useLocalePreference();
+  const { t } = useI18n();
   const room = useAppStore((state) => state.room);
+  const screen = useAppStore((state) => state.screen);
+  const pingMs = useAppStore((state) => state.pingMs);
+  const setScreen = useAppStore((state) => state.setScreen);
+  const onlineCount = useSitePresence();
 
   useRoomSync();
 
   useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem('theme-preference', theme);
-  }, [theme]);
+    function handleBeforeInstallPrompt(event: Event) {
+      event.preventDefault();
+      setInstallPrompt(event as BeforeInstallPromptEvent);
+    }
+
+    function handleAppInstalled() {
+      setInstallPrompt(null);
+    }
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener('appinstalled', handleAppInstalled);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener('appinstalled', handleAppInstalled);
+    };
+  }, []);
+
+  async function handleInstallApp() {
+    if (!installPrompt) {
+      return;
+    }
+
+    await installPrompt.prompt();
+    const choice = await installPrompt.userChoice;
+    if (choice.outcome !== 'accepted') {
+      return;
+    }
+
+    setInstallPrompt(null);
+  }
 
   return (
     <div className="app-shell">
@@ -81,17 +76,31 @@ export function App() {
       {!room ? (
         <header className="topbar">
           <div>
-            <h1>Морской Бой</h1>
+            <h1>{t('app.title')}</h1>
           </div>
           <div className="topbar-actions">
-            <button
-              className="theme-toggle"
-              onClick={() => setTheme((current) => (current === 'light' ? 'dark' : 'light'))}
-              title={theme === 'light' ? 'Включить тёмную тему' : 'Включить светлую тему'}
-            >
-              <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
-              {theme === 'light' ? 'Тёмная тема' : 'Светлая тема'}
-            </button>
+            {screen === 'lobby' ? (
+              <button
+                className="theme-toggle topbar-action-button topbar-mobile-only"
+                onClick={() => setRulesOpen(true)}
+                title={t('app.openRules')}
+                data-testid="open-rules"
+              >
+                <FontAwesomeIcon icon={faBookOpen} />
+                {t('app.rules')}
+              </button>
+            ) : null}
+            {screen === 'lobby' ? (
+              <button
+                className="theme-toggle topbar-action-button"
+                onClick={() => setScreen('settings')}
+                title={t('app.openSettings')}
+                data-testid="open-settings"
+              >
+                <FontAwesomeIcon icon={faGear} />
+                {t('app.settings')}
+              </button>
+            ) : null}
           </div>
         </header>
       ) : null}
@@ -102,9 +111,32 @@ export function App() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.22 }}
       >
-        {room ? <GameScreen room={room} /> : <LobbyScreen />}
+        {room ? <GameScreen room={room} battleGraphicsStyle={battleGraphicsStyle} /> : screen === 'settings' ? (
+          <SettingsScreen
+            theme={theme}
+            battleGraphicsStyle={battleGraphicsStyle}
+            locale={locale}
+            onBack={() => setScreen('lobby')}
+            onToggleTheme={() => setTheme((current) => (current === 'light' ? 'dark' : 'light'))}
+            onChangeBattleGraphicsStyle={setBattleGraphicsStyle}
+            onChangeLocale={setLocale}
+          />
+        ) : (
+          <>
+            <LobbyScreen onlineCount={onlineCount} />
+            {installPrompt ? (
+              <div className="lobby-install-row">
+                <button className="secondary-button lobby-install-button" onClick={() => void handleInstallApp()} data-testid="install-pwa-button">
+                  <FontAwesomeIcon icon={faDownload} />
+                  {t('app.install')}
+                </button>
+              </div>
+            ) : null}
+          </>
+        )}
       </motion.main>
 
+      {!room && screen === 'lobby' && rulesOpen ? <LobbyRulesModal onClose={() => setRulesOpen(false)} /> : null}
       <ToastStack />
     </div>
   );

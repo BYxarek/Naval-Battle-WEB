@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
-import { loadRoomState } from '../api';
-import { getActiveRoomCode, setActiveRoomCode } from '../session';
+import { translate } from '../i18n';
+import { getActiveRoomCode } from '../session';
 import { useAppStore } from '../store';
-
-const POLL_INTERVAL_MS = 1800;
+import { syncRoomState } from './roomSync/syncRoomState';
+import { MAX_SYNC_FAILURES, POLL_INTERVAL_MS } from './roomSync/utils';
 
 export function useRoomSync() {
+  const locale = useAppStore((state) => state.locale);
   const room = useAppStore((state) => state.room);
-  const setRoom = useAppStore((state) => state.setRoom);
-  const setError = useAppStore((state) => state.setError);
-  const notifySuccess = useAppStore((state) => state.notifySuccess);
   const setConnectionStatus = useAppStore((state) => state.setConnectionStatus);
 
   useEffect(() => {
@@ -21,52 +19,56 @@ export function useRoomSync() {
 
     let cancelled = false;
     let firstSync = true;
+    let failedAttempts = 0;
+    let stopped = false;
     let activeController: AbortController | undefined;
+    let timer: number | undefined;
 
-    async function syncRoom() {
+    async function runSync() {
+      if (cancelled || stopped) {
+        return;
+      }
+
       activeController?.abort();
       const controller = new AbortController();
       activeController = controller;
 
-      try {
-        if (firstSync) {
-          setConnectionStatus('connecting');
-        }
-        const nextRoom = await loadRoomState(roomCode, controller.signal);
-        if (cancelled) {
-          return;
-        }
-        if (nextRoom.phase === 'closed') {
-          setActiveRoomCode(undefined);
-          setRoom(undefined);
-          setConnectionStatus('idle');
-          notifySuccess(nextRoom.lastAction ?? 'Игра завершена. Возврат в главное меню.');
-          return;
-        }
-        firstSync = false;
-        setRoom(nextRoom);
-        setConnectionStatus('connected');
-        setError(undefined);
-      } catch (error) {
-        if (cancelled) {
-          return;
-        }
-        if (error instanceof DOMException && error.name === 'AbortError') {
-          return;
-        }
-        const message = error instanceof Error ? error.message : 'Не удалось обновить комнату.';
-        if (message.includes('Комната не найдена')) {
-          setActiveRoomCode(undefined);
-          setRoom(undefined);
-          setConnectionStatus('idle');
-        }
-        setError(message);
+      const result = await syncRoomState({
+        roomCode,
+        signal: controller.signal,
+        firstSync,
+        setFirstSync: (value) => {
+          firstSync = value;
+        },
+        cancelled: () => cancelled,
+      });
+
+      if (result.aborted || cancelled || stopped) {
+        return;
       }
+
+      if (result.ok) {
+        failedAttempts = 0;
+        return;
+      }
+
+      failedAttempts += 1;
+      if (failedAttempts < MAX_SYNC_FAILURES) {
+        return;
+      }
+
+      stopped = true;
+      activeController?.abort();
+      if (timer !== undefined) {
+        window.clearInterval(timer);
+      }
+      useAppStore.getState().setConnectionStatus('idle');
+      useAppStore.getState().setError(translate(locale, 'sync.stopped'));
     }
 
-    void syncRoom();
-    const timer = window.setInterval(() => {
-      void syncRoom();
+    void runSync();
+    timer = window.setInterval(() => {
+      void runSync();
     }, POLL_INTERVAL_MS);
 
     return () => {
@@ -74,5 +76,5 @@ export function useRoomSync() {
       activeController?.abort();
       window.clearInterval(timer);
     };
-  }, [notifySuccess, room?.code, setConnectionStatus, setError, setRoom]);
+  }, [locale, room?.code, setConnectionStatus]);
 }

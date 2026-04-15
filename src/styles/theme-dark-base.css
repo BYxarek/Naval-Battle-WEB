@@ -1,0 +1,129 @@
+:root[data-theme='dark'] body {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(120, 130, 255, 0.14) 0,
+      rgba(120, 130, 255, 0.14) 1px,
+      transparent 1px,
+      transparent 78px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 130, 255, 0.14) 0,
+      rgba(120, 130, 255, 0.14) 1px,
+      transparent 1px,
+      transparent 78px
+    ),
+    linear-gradient(180deg, #10172a 0%, #0a1020 100%);
+}
+
+:root[data-theme='dark'] .ambient-left { background: #4359be; }
+:root[data-theme='dark'] .ambient-right { background: #2b3d88; }
+:root[data-theme='dark'] .theme-toggle {
+  background: rgba(18, 25, 47, 0.96);
+  color: #eef2ff;
+  border-color: rgba(117, 130, 255, 0.26);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+:root[data-theme='dark'] .topbar-meta {
+  color: #7f8cb6;
+}
+:root[data-theme='dark'] .eyebrow { color: #8f9cff; }
+:root[data-theme='dark'] .status-pill,
+:root[data-theme='dark'] .hero-copy,
+:root[data-theme='dark'] .control-panel,
+:root[data-theme='dark'] .settings-card,
+:root[data-theme='dark'] .panel,
+:root[data-theme='dark'] .board-panel,
+:root[data-theme='dark'] .input-shell,
+:root[data-theme='dark'] .online-pill,
+:root[data-theme='dark'] .feature-list span,
+:root[data-theme='dark'] .ship-chip,
+:root[data-theme='dark'] .ghost-button,
+:root[data-theme='dark'] .secondary-button,
+:root[data-theme='dark'] .language-option,
+:root[data-theme='dark'] .status-line,
+:root[data-theme='dark'] .battle-state {
+  background: linear-gradient(180deg, rgba(18, 25, 47, 0.94), rgba(12, 18, 36, 0.96));
+  border-color: rgba(117, 130, 255, 0.26);
+  color: #e7edff;
+}
+
+:root[data-theme='dark'] .settings-option {
+  border-top-color: rgba(117, 130, 255, 0.2);
+}
+
+:root[data-theme='dark'] .settings-card .panel-title,
+:root[data-theme='dark'] .settings-card strong {
+  color: #eef2ff;
+}
+
+:root[data-theme='dark'] .hero-text,
+:root[data-theme='dark'] .rules-list p,
+:root[data-theme='dark'] .muted,
+:root[data-theme='dark'] .board-header p,
+:root[data-theme='dark'] .panel p {
+  color: #a9b4d4;
+}
+:root[data-theme='dark'] .rules-list strong {
+  color: #dfe5ff;
+}
+
+:root[data-theme='dark'] .field input {
+  color: #eef2ff;
+}
+
+:root[data-theme='dark'] .field-icon,
+:root[data-theme='dark'] .ship-group-chip strong {
+  color: #95a4ff;
+}
+:root[data-theme='dark'] .cardless,
+:root[data-theme='dark'] .battle-fleet-card {
+  background: linear-gradient(180deg, rgba(25, 34, 64, 0.98), rgba(16, 23, 43, 0.98));
+  border-color: rgba(117, 130, 255, 0.24);
+  color: #e7edff;
+}
+:root[data-theme='dark'] .battle-fleet-header strong {
+  color: #eef2ff;
+}
+:root[data-theme='dark'] .battle-fleet-line span {
+  color: #b8c2e6;
+}
+:root[data-theme='dark'] .battle-fleet-line strong {
+  color: #9aa7ff;
+}
+:root[data-theme='dark'] .player-count-option {
+  background: linear-gradient(180deg, rgba(18, 25, 47, 0.94), rgba(12, 18, 36, 0.96));
+  border-color: rgba(117, 130, 255, 0.26);
+  color: #e7edff;
+}
+:root[data-theme='dark'] .player-count-option.active {
+  background: linear-gradient(135deg, #8293ff, #5563cb);
+  color: #f9fbff;
+}
+
+:root[data-theme='dark'] .language-option.active {
+  background: linear-gradient(135deg, #8293ff, #5563cb);
+  border-color: rgba(117, 130, 255, 0.42);
+  color: #f9fbff;
+}
+
+:root[data-theme='dark'] .primary-button {
+  background: linear-gradient(135deg, #8293ff, #5563cb);
+  color: #f9fbff;
+}
+
+:root[data-theme='dark'] .danger-button {
+  background: linear-gradient(135deg, rgba(83, 31, 49, 0.96), rgba(109, 37, 62, 0.96));
+  color: #ffdbe7;
+  border-color: rgba(203, 105, 141, 0.34);
+}
+
+:root[data-theme='dark'] .ship-chip.active {
+  background: linear-gradient(135deg, rgba(76, 100, 204, 0.95), rgba(48, 72, 163, 0.98));
+}
+
+:root[data-theme='dark'] .mobile-sidebar-header {
+  background: linear-gradient(180deg, rgba(18, 25, 47, 0.98), rgba(11, 16, 30, 0.98));
+  border-bottom-color: rgba(117, 130, 255, 0.18);
+}

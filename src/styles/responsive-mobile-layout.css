@@ -1,0 +1,146 @@
+@media (max-width: 640px) {
+  .app-shell {
+    padding: 10px;
+  }
+  .topbar { flex-direction: column; }
+  .topbar-actions {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .topbar {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .game-layout,
+  .battlefield,
+  .sidebar,
+  .boards-grid {
+    gap: 10px;
+  }
+  .hero-copy, .control-panel, .panel, .board-panel { border-radius: 6px; }
+  .actions {
+    flex-direction: column;
+  }
+  .create-room-button {
+    width: 100%;
+    align-self: stretch;
+  }
+  .join-row,
+  .panel-row {
+    flex-wrap: wrap;
+  }
+  .panel,
+  .board-panel,
+  .battle-state,
+  .modal-card {
+    padding: 10px;
+  }
+  .panel-title {
+    font-size: 1.25rem;
+  }
+  .section-title,
+  .board-header h3 {
+    font-size: 0.95rem;
+  }
+  .event-line,
+  .board-header p,
+  .status-line,
+  .ship-group-chip strong {
+    font-size: 0.84rem;
+  }
+  .battle-state h2 {
+    font-size: 1.15rem;
+    line-height: 1.1;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .battle-heading {
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+    flex-wrap: nowrap;
+  }
+  .battle-heading-actions {
+    width: auto;
+    margin-left: auto;
+    justify-content: flex-end;
+    gap: 8px;
+    flex: 0 0 auto;
+  }
+  .battle-pill {
+    font-size: 0.8rem;
+    padding: 7px 10px;
+    max-width: 100%;
+  }
+  .mobile-sidebar-toggle {
+    display: inline-flex;
+    width: auto;
+    padding: 7px 10px;
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    width: min(22rem, 100vw);
+    height: 100dvh;
+    max-width: 100%;
+    padding: max(10px, env(safe-area-inset-top)) 10px max(18px, env(safe-area-inset-bottom));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-padding-bottom: max(18px, env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, rgba(251, 252, 255, 0.96), rgba(241, 245, 255, 0.98));
+    border-left: 1px solid rgba(114, 126, 255, 0.22);
+    border-radius: 0;
+    box-shadow: -18px 0 36px rgba(97, 110, 184, 0.16);
+    transform: translateX(100%);
+    transition: transform 0.22s ease;
+  }
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+  .mobile-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    position: sticky;
+    top: calc(-1 * max(10px, env(safe-area-inset-top)));
+    margin: calc(-1 * max(10px, env(safe-area-inset-top))) -10px 10px;
+    padding: max(10px, env(safe-area-inset-top)) 10px 10px;
+    background: linear-gradient(180deg, rgba(251, 252, 255, 0.98), rgba(241, 245, 255, 0.98));
+    z-index: 2;
+    border-bottom: 1px solid rgba(114, 126, 255, 0.16);
+  }
+  .mobile-sidebar-close {
+    display: inline-flex;
+    width: auto;
+    padding: 7px 10px;
+    flex: 0 0 auto;
+  }
+  .mobile-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 4;
+    border: 0;
+    background: rgba(15, 21, 39, 0.24);
+    padding: 0;
+  }
+  .topbar-action-button {
+    flex: 1 1 0;
+    justify-content: center;
+    white-space: nowrap;
+  }
+  .topbar-mobile-only {
+    display: inline-flex;
+  }
+  .lobby-rules-desktop {
+    display: none;
+  }
+}

@@ -1,0 +1,14 @@
+@media (max-width: 1100px) {
+  .hero-grid, .game-layout, .boards-grid { grid-template-columns: 1fr; }
+  .app-shell { padding: 14px; }
+  .game-layout,
+  .battlefield,
+  .boards-grid {
+    gap: 12px;
+  }
+  .panel,
+  .board-panel,
+  .battle-state {
+    padding: 12px;
+  }
+}

@@ -6,7 +6,6 @@ const root = process.cwd();
 const distDir = resolve(root, 'dist');
 const apiDir = resolve(root, 'api');
 const databaseDir = resolve(root, 'database');
-const deployFile = resolve(root, 'DEPLOY.md');
 
 if (!existsSync(distDir)) {
   throw new Error('Не найдена папка dist. Сначала выполните сборку.');
@@ -22,7 +21,6 @@ mkdirSync(stagingDir, { recursive: true });
 cpSync(distDir, stagingDir, { recursive: true });
 cpSync(apiDir, join(stagingDir, 'api'), { recursive: true });
 cpSync(databaseDir, join(stagingDir, 'database'), { recursive: true });
-cpSync(deployFile, join(stagingDir, 'DEPLOY.md'));
 rmSync(join(stagingDir, '.htaccess'), { force: true });
 
 const readme = `Архив для хостинга by-dev.ru
@@ -31,7 +29,6 @@ const readme = `Архив для хостинга by-dev.ru
 - файлы фронтенда из dist/
 - PHP API из api/
 - схема базы данных из database/schema.sql
-- DEPLOY.md
 
 Загрузка:
 1. Распакуйте архив локально.

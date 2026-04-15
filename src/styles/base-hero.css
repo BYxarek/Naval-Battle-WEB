@@ -1,0 +1,69 @@
+.hero-grid { grid-template-columns: 1.15fr 0.85fr; align-items: stretch; }
+.hero-copy, .control-panel, .panel, .board-panel {
+  background:
+    linear-gradient(180deg, rgba(247, 249, 255, 0.94), rgba(238, 243, 255, 0.94));
+  border: 1px solid rgba(114, 126, 255, 0.22);
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(97, 110, 184, 0.08);
+}
+.hero-copy, .control-panel { padding: 22px; }
+.hero-copy {
+  min-height: 24rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background:
+    radial-gradient(circle at 78% 16%, rgba(148, 164, 255, 0.22), transparent 22%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(118, 128, 255, 0.11) 0,
+      rgba(118, 128, 255, 0.11) 1px,
+      transparent 1px,
+      transparent 78px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(118, 128, 255, 0.11) 0,
+      rgba(118, 128, 255, 0.11) 1px,
+      transparent 1px,
+      transparent 78px
+    ),
+    linear-gradient(180deg, rgba(252, 253, 255, 0.96), rgba(238, 243, 255, 0.96));
+}
+.hero-copy h2 { font-size: clamp(2.2rem, 4vw, 4rem); max-width: 11ch; }
+.hero-text, .muted, .board-header p, .panel p { color: #607091; }
+.hero-text { max-width: 32rem; font-size: 0.96rem; line-height: 1.45; }
+.rules-list {
+  display: grid;
+  gap: 10px;
+  max-width: 38rem;
+  margin-top: 16px;
+}
+.rules-list p {
+  margin: 0;
+  color: #607091;
+  line-height: 1.5;
+}
+.rules-list strong {
+  color: #34477b;
+}
+.feature-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.feature-list span, .ship-chip, .ghost-button {
+  border: 1px solid rgba(114, 126, 255, 0.22);
+  background: rgba(245, 248, 255, 0.82);
+}
+.feature-list span, .ship-chip { padding: 8px 11px; border-radius: 999px; }
+.feature-list span, .ship-chip { border-radius: 4px; }
+.feature-list span,
+.primary-button,
+.secondary-button,
+.ghost-button,
+.ship-chip,
+.panel-title,
+.section-title,
+.board-header h3,
+.battle-state h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}

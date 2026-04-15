@@ -5,6 +5,7 @@ declare(strict_types=1);
 header('Content-Type: application/json; charset=utf-8');
 
 $config = require __DIR__ . '/config.php';
+require_once __DIR__ . '/i18n.php';
 
 function json_input(): array
 {

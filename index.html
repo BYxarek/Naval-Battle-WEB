@@ -3,15 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Морской Бой</title>
+    <title>Морской Бой онлайн: мультиплеер по коду комнаты</title>
     <meta
       name="description"
-      content="Цветной мультиплеерный морской бой на React, PHP 8.2 и MySQL 8.0."
+      content="Мультиплеерный Морской Бой онлайн для браузера: создавайте комнату по коду, приглашайте друзей по ссылке и играйте на любых устройствах."
     />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta
+      name="keywords"
+      content="морской бой, морской бой онлайн, battleship online, multiplayer battleship, игра по коду комнаты, браузерная игра"
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#10172a" />
+    <meta name="application-name" content="Морской Бой" />
+    <meta name="apple-mobile-web-app-title" content="Морской Бой" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Морской Бой" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:title" content="Морской Бой онлайн: мультиплеер по коду комнаты" />
+    <meta
+      property="og:description"
+      content="Создавайте комнату, отправляйте ссылку-приглашение и играйте в Морской Бой онлайн с друзьями на любых устройствах."
+    />
+    <meta property="og:image" content="%BASE_URL%favicon.svg" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Морской Бой онлайн: мультиплеер по коду комнаты" />
+    <meta
+      name="twitter:description"
+      content="Браузерный Морской Бой с комнатами по коду, приглашениями по ссылке и мультиплеером на любых устройствах."
+    />
+    <meta name="twitter:image" content="%BASE_URL%favicon.svg" />
+
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <link rel="manifest" href="%BASE_URL%site.webmanifest" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Морской Бой",
+        "description": "Мультиплеерный Морской Бой онлайн для браузера с комнатами по коду и приглашениями по ссылке.",
+        "genre": ["Strategy", "Board Game"],
+        "gamePlatform": "Web Browser",
+        "applicationCategory": "Game",
+        "inLanguage": ["ru", "en", "uk"],
+        "operatingSystem": "Any"
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
-  </html>
+</html>

@@ -1,0 +1,103 @@
+@media (max-width: 640px) {
+  .sidebar .panel {
+    overflow: visible;
+  }
+  .ship-panel .panel-row {
+    align-items: stretch;
+    gap: 8px;
+  }
+  .ship-hint {
+    flex-basis: 100%;
+    width: 100%;
+    padding: 9px 10px;
+    font-size: 0.84rem;
+  }
+  .ship-list,
+  .status-stack,
+  .panel-actions {
+    gap: 6px;
+  }
+  .panel-actions {
+    padding-bottom: 2px;
+  }
+  .player-count-panel {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .player-count-row {
+    align-items: stretch;
+  }
+  .player-count-option {
+    min-width: 0;
+    padding: 10px 8px;
+    gap: 0;
+  }
+  .bot-room-button {
+    width: 2.75rem;
+    min-width: 2.75rem;
+    flex-basis: 2.75rem;
+  }
+  .player-count-number {
+    font-size: 1rem;
+    line-height: 1;
+  }
+  .ship-chip {
+    padding: 8px 10px;
+  }
+  .status-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .status-line {
+    padding: 7px 8px;
+  }
+  .primary-button,
+  .secondary-button,
+  .ghost-button,
+  .danger-button {
+    padding: 10px 12px;
+    font-size: 0.92rem;
+  }
+  .board-header {
+    margin-bottom: 8px;
+  }
+  .board-loading {
+    gap: 8px;
+    font-size: 0.9rem;
+    padding: 8px;
+    text-align: center;
+  }
+  .cell-mark {
+    inset: 3px;
+  }
+  .cell-mark-cross::before,
+  .cell-mark-cross::after {
+    height: 2px;
+  }
+  .toast-stack {
+    right: 10px;
+    left: 10px;
+    bottom: 10px;
+    width: auto;
+  }
+  .toast {
+    max-width: none;
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .result-modal {
+    width: min(100%, 34rem);
+    max-height: calc(100svh - 20px);
+    overflow: auto;
+  }
+  .mobile-ready-button {
+    display: inline-flex;
+    width: min(100%, 32rem);
+    margin: -2px auto 0;
+    justify-self: center;
+    justify-content: center;
+  }
+  .stats-grid,
+  .modal-actions {
+    grid-template-columns: 1fr;
+  }
+  .cell { border-radius: 0; }
+}
