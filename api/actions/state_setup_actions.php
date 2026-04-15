@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function handle_state(PDO $pdo): never
+function handle_state(PDO $pdo): void
 {
     $code = strtoupper(trim((string) ($_GET['code'] ?? '')));
     $playerToken = (string) ($_GET['playerToken'] ?? '');
@@ -34,7 +34,7 @@ function handle_state(PDO $pdo): never
     respond(['room' => sanitize_room_for_player($room, $room['players'][$playerIndex]['id'])]);
 }
 
-function handle_submit_setup(PDO $pdo, array $input): never
+function handle_submit_setup(PDO $pdo, array $input): void
 {
     $code = strtoupper(trim((string) ($input['code'] ?? '')));
     $playerToken = (string) ($input['playerToken'] ?? '');
@@ -76,7 +76,7 @@ function handle_submit_setup(PDO $pdo, array $input): never
     respond(['room' => sanitize_room_for_player($room, $room['players'][$playerIndex]['id'])]);
 }
 
-function handle_cancel_room(PDO $pdo, array $input): never
+function handle_cancel_room(PDO $pdo, array $input): void
 {
     $code = strtoupper(trim((string) ($input['code'] ?? '')));
     $playerToken = (string) ($input['playerToken'] ?? '');

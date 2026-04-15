@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
     'db' => [
-        'host' => '92.53.99.209',
+        'host' => 'localhost',
         'port' => 3306,
         'database' => 'morskoy_boy',
         'username' => 'morskoy_boy',

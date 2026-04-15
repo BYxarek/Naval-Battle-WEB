@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function handle_fire(PDO $pdo, array $input): never
+function handle_fire(PDO $pdo, array $input): void
 {
     $code = strtoupper(trim((string) ($input['code'] ?? '')));
     $playerToken = (string) ($input['playerToken'] ?? '');
@@ -76,7 +76,7 @@ function handle_fire(PDO $pdo, array $input): never
     respond(['room' => sanitize_room_for_player($room, $attackerId)]);
 }
 
-function handle_surrender_room(PDO $pdo, array $input): never
+function handle_surrender_room(PDO $pdo, array $input): void
 {
     $code = strtoupper(trim((string) ($input['code'] ?? '')));
     $playerToken = (string) ($input['playerToken'] ?? '');

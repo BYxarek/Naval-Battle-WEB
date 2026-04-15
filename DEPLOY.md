@@ -5,7 +5,8 @@
 Целевой URL: `https://by-dev.ru/morskoy-boy/`
 
 Стек:
-- PHP 8.2
+- Apache
+- PHP 8.0
 - MySQL 8.0
 
 ## Что загрузить

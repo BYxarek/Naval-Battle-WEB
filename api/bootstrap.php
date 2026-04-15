@@ -18,14 +18,14 @@ function json_input(): array
     return is_array($decoded) ? $decoded : [];
 }
 
-function respond(array $payload, int $status = 200): never
+function respond(array $payload, int $status = 200): void
 {
     http_response_code($status);
     echo json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     exit;
 }
 
-function fail(string $message, int $status = 400): never
+function fail(string $message, int $status = 400): void
 {
     respond(['error' => $message], $status);
 }

@@ -8,7 +8,7 @@ require_once __DIR__ . '/actions/battle_actions.php';
 require_once __DIR__ . '/actions/rematch_actions.php';
 require_once __DIR__ . '/actions/presence_actions.php';
 
-function dispatch_action(PDO $pdo, string $action, array $input): never
+function dispatch_action(PDO $pdo, string $action, array $input): void
 {
     switch ($action) {
         case 'create-room':

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function handle_presence_ping(PDO $pdo, array $input): never
+function handle_presence_ping(PDO $pdo, array $input): void
 {
     $playerToken = (string) ($input['playerToken'] ?? '');
     if ($playerToken === '') {
@@ -13,7 +13,7 @@ function handle_presence_ping(PDO $pdo, array $input): never
     respond(['ok' => true]);
 }
 
-function handle_online_count(PDO $pdo): never
+function handle_online_count(PDO $pdo): void
 {
     respond(['count' => count_online_visitors($pdo)]);
 }

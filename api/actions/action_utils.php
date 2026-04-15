@@ -13,13 +13,13 @@ function find_player_index(array $room, string $playerToken): ?int
     return null;
 }
 
-function sanitize_name(mixed $value): string
+function sanitize_name($value): string
 {
     $name = trim((string) $value);
     return mb_substr($name !== '' ? $name : tr('default.captain'), 0, 24);
 }
 
-function sanitize_max_players(mixed $value): int
+function sanitize_max_players($value): int
 {
     $maxPlayers = (int) $value;
     return in_array($maxPlayers, [2, 3, 4], true) ? $maxPlayers : 2;

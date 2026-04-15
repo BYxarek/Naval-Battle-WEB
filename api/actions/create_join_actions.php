@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function handle_create_room(PDO $pdo, array $input): never
+function handle_create_room(PDO $pdo, array $input): void
 {
     $name = sanitize_name($input['name'] ?? '');
     $maxPlayers = sanitize_max_players($input['maxPlayers'] ?? 2);
@@ -30,7 +30,7 @@ function handle_create_room(PDO $pdo, array $input): never
     respond(['room' => sanitize_room_for_player($room, $playerId)]);
 }
 
-function handle_create_bot_room(PDO $pdo, array $input): never
+function handle_create_bot_room(PDO $pdo, array $input): void
 {
     $name = sanitize_name($input['name'] ?? '');
     $playerToken = (string) ($input['playerToken'] ?? '');
@@ -60,7 +60,7 @@ function handle_create_bot_room(PDO $pdo, array $input): never
     respond(['room' => sanitize_room_for_player($room, $playerId)]);
 }
 
-function handle_join_room(PDO $pdo, array $input): never
+function handle_join_room(PDO $pdo, array $input): void
 {
     $name = sanitize_name($input['name'] ?? '');
     $code = strtoupper(trim((string) ($input['code'] ?? '')));

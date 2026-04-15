@@ -6,7 +6,7 @@ Version: `1.0.0`
 
 ### Что это за релиз
 
-`Морской Бой 1.0.0` это релиз браузерной версии игры для shared hosting с `PHP 8.2` и `MySQL 8.0`.
+`Морской Бой 1.0.0` это релиз браузерной версии игры для shared hosting с `Apache`, `PHP 8.0` и `MySQL 8.0`.
 В архив входят production-фронтенд, PHP API, схема базы данных и актуальные файлы для публикации на хостинге.
 
 ### Главное в релизе
@@ -60,7 +60,7 @@ Version: `1.0.0`
 
 ### What this release is
 
-`Naval Battle 1.0.0` is the browser release of the game prepared for shared hosting with `PHP 8.2` and `MySQL 8.0`.
+`Naval Battle 1.0.0` is the browser release of the game prepared for shared hosting with `Apache`, `PHP 8.0`, and `MySQL 8.0`.
 The archive contains the production frontend, the PHP API, the database schema, and the current files required for deployment.
 
 ### Highlights
