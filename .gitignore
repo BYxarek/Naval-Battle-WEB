@@ -5,6 +5,7 @@ node_modules/
 dist/
 release/
 scripts/.tmp/
+server/mysql-local/
 
 # logs
 *.log
